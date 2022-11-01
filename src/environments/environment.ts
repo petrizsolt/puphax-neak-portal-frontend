@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  portalApiUrl: 'https://your-api-url.com/',
+  portalPageData: 'rest/tor/nyilvantartas/PUPHAX/{tableName}',
+  portalTableSize: 'rest/tor/nyilvantartas/PUPHAX/{tableName}/size'
 };
 
 /*

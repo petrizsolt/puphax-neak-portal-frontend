@@ -1,0 +1,55 @@
+<div id="search-bar">
+    <mat-form-field appearance="fill">
+      <mat-label>Válasszon táblát</mat-label>
+      <mat-select [(value)]="table" (selectionChange)="selectedTable($event)">
+        <input (keyup)=searchTable($event) id="selector-search" placeholder="keresés">
+        <mat-option  ng-model="table" *ngFor="let data of tables" [value]="data">
+          {{data}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+
+    <mat-form-field appearance="fill">
+        <mat-label>Válasszon keresési mezőt</mat-label>
+        <mat-select [(ngModel)] = "selectedColumn" >
+        <input (keyup)=searchField($event) id="selector-search" placeholder="keresés">
+          <mat-option  *ngFor="let data of tableNamesFiltered" [value]="data" >
+            {{data}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    &nbsp;
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label >Érték</mat-label>
+        <input matInput [(ngModel)] = "searchValue">
+    </mat-form-field>
+      &nbsp;
+
+
+      <button mat-raised-button (click)="showDataFiltered()">Keresés</button>
+
+    
+</div>
+
+
+
+<table>
+    <thead>
+        <th *ngFor="let val of tableNames">{{val}}</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let tabVal of tableValues ">
+            <td *ngFor="let val of tabVal">{{val}}</td>
+        </tr>
+    </tbody>
+  </table> 
+  
+  <mat-paginator [length]="tableSize"
+                [pageSize]="size"
+                [showFirstLastButtons]="true"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                [pageIndex]="page" (page)= pageChangeEvent($event)
+                aria-label="Select page">
+  </mat-paginator>
